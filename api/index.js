@@ -9,21 +9,34 @@ app.use(express.json());
 
 const Product = require("./models/product.model");
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get("/api/products", async (req, res) => {
+  try {
+    const products = await Product.find();
+    res.status(200).json({
+      products,
+      message: "Products fetched successfully",
+      statusCode: 200,
+      success: true,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });
 
-app.get("/get", (req, res) => {
-  res.json({
-    message: "Hello from the GET endpoint!",
-    statusCode: 200,
-    success: true,
-  });
-});
-
-app.post("/api/create", (req, res) => {
-  console.log(req.body);
-  res.send(req.body);
+app.post("/api/create", async (req, res) => {
+  try {
+    const product = await Product.create(req.body);
+    res.status(201).json({
+      product,
+      message: "Product created successfully",
+      success: true,
+    });
+  } catch (error) {
+    console.log("error", error);
+    res.status(500).json({
+      error,
+    });
+  }
 });
 
 mongoose
