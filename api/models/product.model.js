@@ -19,7 +19,7 @@ const productSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true, // ✅ FIXED: correct spelling
+    timestamps: true, 
   }
 );
 
