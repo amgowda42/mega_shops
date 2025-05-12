@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const productRoutes = require("./routes/product.route");
+const shopRoutes = require("./routes/shop.route");
 
 //initializations
 const app = express();
@@ -15,6 +16,7 @@ app.use(express.json());
 
 //routes
 app.use("/api/v1/products", productRoutes);
+app.use("/api/v1/shops", shopRoutes);
 
 //connecting to MongoDB
 mongoose
