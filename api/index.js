@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const productRoutes = require("./routes/product.route");
 const shopRoutes = require("./routes/shop.route");
 
@@ -10,6 +11,14 @@ const app = express();
 require("dotenv").config();
 const port = process.env.PORT || 3000;
 const mongo_db_uri = process.env.MONGO_DB_URI;
+
+//cors
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 
 //middleware
 app.use(express.json());
