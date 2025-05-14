@@ -67,7 +67,7 @@ export const ShopProvider = ({ children }) => {
   }, []);
 
   return (
-    <ProductContext.Provider
+    <ShopContext.Provider
       value={{
         shops,
         loading,
@@ -78,6 +78,6 @@ export const ShopProvider = ({ children }) => {
       }}
     >
       {children}
-    </ProductContext.Provider>
+    </ShopContext.Provider>
   );
 };
