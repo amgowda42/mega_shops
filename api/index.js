@@ -15,7 +15,7 @@ const mongo_db_uri = process.env.MONGO_DB_URI;
 //cors
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://localhost:5173", // React app URL
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );

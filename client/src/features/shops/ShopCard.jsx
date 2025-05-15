@@ -1,11 +1,9 @@
-import React from "react";
-
-const ShopCard = ({ name ="hhhd", location = "jgjjg", owner="fjjoko " }) => {
+const ShopCard = ({ shop }) => {
   return (
-    <div className="border-[0.5px] border-red-500 rounded-sm p-4 shadow-sm max-w-sm bg-white">
-      <h2 className="text-xl font-semibold text-gray-800">{name}</h2>
-      <p className="text-sm text-gray-600 mt-1">📍 {location}</p>
-      <p className="text-sm text-gray-600 mt-1">👤 Owner: {owner}</p>
+    <div className="border-[0.5px] space-y-2 border-red-500 rounded-sm p-4 shadow-sm max-w-sm bg-[#F8F8FF] font-medium">
+      <h2 className="text-xl font-semibold text-red-500">{shop?.name}</h2>
+      <p className="text-sm text-gray-600">📍 {shop?.location}</p>
+      <p className="text-sm text-gray-600">👤 Owner: {shop?.owner}</p>
     </div>
   );
 };

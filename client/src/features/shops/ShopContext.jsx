@@ -3,9 +3,7 @@ import api from "../../api/api";
 
 const ShopContext = createContext();
 
-export const useShopContext = () => {
-  useContext(ShopContext);
-};
+export const useShopContext = () => useContext(ShopContext);
 
 export const ShopProvider = ({ children }) => {
   const [shops, setShops] = useState([]);
