@@ -1,23 +1,11 @@
-import ShopCard from "./ShopCard";
-import { useShopContext } from "./ShopContext";
+import { ShopProvider } from "./ShopContext";
+import ShopList from "./ShopList";
 
 const Shops = () => {
-  const { shops } = useShopContext();
-
   return (
-    <div>
-      <div className="w-2xl mx-auto text-center">
-        <h4 className="text-red-500 text-base font-medium">Shops</h4>
-        <h6>List of Shop Available in diffferent locations in india</h6>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-        {shops && Array?.isArray(shops) && shops?.length > 0 ? (
-          shops?.map((shop) => <ShopCard key={shop?._id} shop={shop} />)
-        ) : (
-          <p>Something went Wrong</p>
-        )}
-      </div>
-    </div>
+    <ShopProvider>
+      <ShopList />
+    </ShopProvider>
   );
 };
 
