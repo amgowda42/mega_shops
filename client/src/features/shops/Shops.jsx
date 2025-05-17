@@ -3,9 +3,11 @@ import ShopList from "./ShopList";
 
 const Shops = () => {
   return (
-    <ShopProvider>
-      <ShopList />
-    </ShopProvider>
+    <>
+      <ShopProvider>
+        <ShopList />
+      </ShopProvider>
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 import ShopCard from "./ShopCard";
 import { useShopContext } from "./ShopContext";
+import ShopCardShimmer from "../../components/ui/shimmers/ShopCardShimmer";
 
 const ShopList = () => {
   const { shops } = useShopContext();
@@ -16,6 +17,7 @@ const ShopList = () => {
           <p>Something went Wrong</p>
         )}
       </div>
+      <ShopCardShimmer />
     </div>
   );
 };
