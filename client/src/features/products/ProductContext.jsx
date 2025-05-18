@@ -3,10 +3,7 @@ import api from "../../api/api";
 
 const ProductContext = createContext();
 
-export const useProductContext = () => {
-  useContext(ProductContext);
-};
-
+export const useProductContext = () => useContext(ProductContext);
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
