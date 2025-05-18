@@ -10,16 +10,14 @@ import { ProductProvider } from "./features/products/ProductContext";
 const App = () => {
   return (
     <div className="App">
-      <ProductProvider>
-        <Routes>
-          <Route path="" element={<Layout />}>
-            <Route path="" element={<Home />} />
-            <Route path="shops" element={<Shops />} />
-            <Route path="products" element={<Product />} />
-            <Route path="aboutus" element={<AboutUs />} />
-          </Route>
-        </Routes>
-      </ProductProvider>
+      <Routes>
+        <Route path="" element={<Layout />}>
+          <Route path="" element={<Home />} />
+          <Route path="shops" element={<Shops />} />
+          <Route path="products" element={<Product />} />
+          <Route path="aboutus" element={<AboutUs />} />
+        </Route>
+      </Routes>
     </div>
   );
 };

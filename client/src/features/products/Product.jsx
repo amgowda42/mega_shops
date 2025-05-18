@@ -1,5 +1,14 @@
+import { ProductProvider } from "./ProductContext";
+import ProductList from "./ProductList";
+
 const Product = () => {
-  return <div>|Products</div>;
+  return (
+    <>
+      <ProductProvider>
+        <ProductList />
+      </ProductProvider>
+    </>
+  );
 };
 
 export default Product;
