@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const productRoutes = require("./routes/product.route");
 const shopRoutes = require("./routes/shop.route");
+const authRoutes = require("./routes/auth.route");
 
 //initializations
 const app = express();
@@ -15,7 +16,7 @@ const mongo_db_uri = process.env.MONGO_DB_URI;
 //cors
 app.use(
   cors({
-    origin: "http://localhost:5173", // React app URL
+    origin: "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
@@ -24,6 +25,7 @@ app.use(
 app.use(express.json());
 
 //routes
+app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/shops", shopRoutes);
 
