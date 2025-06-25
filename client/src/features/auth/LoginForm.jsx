@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useAuthContext } from "./AuthContex";
 
 const LoginForm = () => {
   const {
@@ -7,8 +8,10 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm();
 
+  const { login } = useAuthContext();
+
   const onSubmit = (data) => {
-    console.log("Login Data", data);
+    login(data);
   };
 
   return (

@@ -1,7 +1,47 @@
-import React from "react";
+import { createContext, useContext, useState } from "react";
+import api from "../../api/api";
+import { useNavigate } from "react-router";
+import { toast } from "sonner";
 
-const AuthContex = () => {
-  return <div></div>;
+const AuthContext = createContext();
+
+export const useAuthContext = () => useContext(AuthContext);
+
+export const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  const login = async (credentials) => {
+    try {
+      setLoading(true);
+      setError(null);
+      const res = await api.post("/auth/login", credentials);
+      if (res?.data?.success) {
+        navigate("/main/home");
+        toast.success("Login successful");
+      } else {
+        setError(res?.data?.message);
+        toast.error(res?.data?.message || "Login failed");
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("Login failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <AuthContext.Provider
+      value={{
+        loading,
+        error,
+        login,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };
-
-export default AuthContex;
