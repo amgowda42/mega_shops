@@ -4,7 +4,7 @@ import ShopCardShimmer from "../../components/ui/shimmers/ShopCardShimmer";
 
 const ShopList = () => {
   const { shops, loading } = useShopContext();
-  const shimmerArray = new Array(6).fill(null);
+  const shimmerArray = new Array(4).fill(null);
   return (
     <div>
       <div className="w-2xl mx-auto text-center">

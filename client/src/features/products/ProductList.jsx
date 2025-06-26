@@ -4,7 +4,7 @@ import { useProductContext } from "./ProductContext";
 import ProductCardShimmer from "../../components/ui/shimmers/ProductCardShimmer";
 const ProductList = () => {
   const { products, loading } = useProductContext();
-  const shimmerArray = new Array(6).fill(null);
+  const shimmerArray = new Array(4).fill(null);
   const [isModelOpen, setIsModelOpen] = useState(false);
 
   return (
