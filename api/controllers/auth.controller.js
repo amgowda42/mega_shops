@@ -83,3 +83,12 @@ exports.login = async (req, res) => {
     });
   }
 };
+
+exports.logout = (req, res) => {
+  // Need Implement logout logic , clearing the token token
+  res.status(200).json({
+    message: "User logged out successfully",
+    statusCode: 200,
+    success: true,
+  });
+};
