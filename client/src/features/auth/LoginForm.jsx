@@ -55,7 +55,7 @@ const LoginForm = () => {
         </div>
         <button
           type="submit"
-          className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition"
+          className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition cursor-pointer"
         >
           Login
         </button>

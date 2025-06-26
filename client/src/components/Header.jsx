@@ -1,8 +1,12 @@
 import { NavLink } from "react-router";
+import { CiPower } from "react-icons/ci";
+import { useAuthContext } from "../features/auth/AuthContex";
 const Header = () => {
+  const { logout } = useAuthContext();
+
   return (
-    <div className="mx-auto border-b-2 border-b-blue-400 p-5">
-      <div className="mx-auto max-w-2xs flex justify-between text-base font-medium">
+    <div className="mx-auto border-b-2 border-b-blue-400 flex items-center  p-5">
+      <div className="mx-auto w-full max-w-2xs flex justify-between text-base font-medium">
         <NavLink
           to=""
           className={({ isActive }) =>
@@ -10,7 +14,7 @@ const Header = () => {
           }
         >
           Home
-        </NavLink>  
+        </NavLink>
         <NavLink
           to="shops"
           className={({ isActive }) =>
@@ -36,6 +40,11 @@ const Header = () => {
           About Us
         </NavLink>
       </div>
+      <CiPower
+        title="Logout"
+        className="text-3xl font-bold cursor-pointer"
+        onClick={() => logout()}
+      />
     </div>
   );
 };

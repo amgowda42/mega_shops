@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
   const login = async (credentials) => {
     try {
@@ -33,12 +33,29 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const logout = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const res = await api.post("/auth/logout");
+      if (res?.data?.success) {
+        navigate("/login");
+        toast.success("Logout successful");
+      }
+    } catch (err) {
+      console.error("Logout error:", err);
+      setError("Logout failed");
+      toast.error("Logout failed");
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
         loading,
         error,
         login,
+        logout,
       }}
     >
       {children}
