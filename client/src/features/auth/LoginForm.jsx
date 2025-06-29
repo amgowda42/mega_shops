@@ -8,7 +8,7 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm();
 
-  const { login } = useAuthContext();
+  const { login, loading } = useAuthContext();
 
   const onSubmit = (data) => {
     login(data);
@@ -57,7 +57,7 @@ const LoginForm = () => {
           type="submit"
           className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition cursor-pointer"
         >
-          Login
+          {loading ? "Logging" : "Login"}
         </button>
       </form>
     </div>

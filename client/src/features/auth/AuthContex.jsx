@@ -46,6 +46,8 @@ export const AuthProvider = ({ children }) => {
       console.error("Logout error:", err);
       setError("Logout failed");
       toast.error("Logout failed");
+    } finally {
+      setLoading(false);
     }
   };
 
