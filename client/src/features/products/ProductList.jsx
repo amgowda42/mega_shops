@@ -3,9 +3,25 @@ import ProductCard from "./ProductCard";
 import { useProductContext } from "./ProductContext";
 import ProductCardShimmer from "../../components/ui/shimmers/ProductCardShimmer";
 const ProductList = () => {
-  const { products, loading } = useProductContext();
+  const { products, loading, createProduct } = useProductContext();
   const shimmerArray = new Array(4).fill(null);
   const [isModelOpen, setIsModelOpen] = useState(false);
+
+  const handleAddProduct = (e) => {
+    e.preventDefault();
+    const form = e.target;
+
+    const formData = new FormData(form);
+
+    const data = {
+      name: formData.get("product"),
+      price: formData.get("price"),
+      quantity: formData.get("quantity"),
+    };
+    createProduct(data);
+    form.reset();
+    setIsModelOpen(false);
+  };
 
   return (
     <div className="relative">
@@ -40,7 +56,7 @@ const ProductList = () => {
               &times;
             </button>
             <h3 className="text-lg font-semibold mb-4">Add Product</h3>
-            <form>
+            <form onSubmit={handleAddProduct}>
               <label htmlFor="product" className="block mb-2 font-medium">
                 Product Name
               </label>
@@ -48,6 +64,26 @@ const ProductList = () => {
                 type="text"
                 id="product"
                 name="product"
+                className="border border-gray-300 rounded p-2 w-full mb-4"
+                required
+              />
+              <label htmlFor="price" className="block mb-2 font-medium">
+                Price
+              </label>
+              <input
+                type="number"
+                id="price"
+                name="price"
+                className="border border-gray-300 rounded p-2 w-full mb-4"
+                required
+              />
+              <label htmlFor="quantity" className="block mb-2 font-medium">
+                Quantity
+              </label>
+              <input
+                type="number"
+                id="quantity"
+                name="quantity"
                 className="border border-gray-300 rounded p-2 w-full mb-4"
                 required
               />
