@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import api from "../../api/api";
+import { toast } from "sonner";
 
 const ProductContext = createContext();
 
@@ -35,8 +36,10 @@ export const ProductProvider = ({ children }) => {
   const createProduct = async (data) => {
     try {
       await api.post("/products", data);
+      toast.success("Product Added successfully");
       fetchProducts();
     } catch (error) {
+      toast.error("Failed to add product");
       console.error("Create product error:", error);
     }
   };
@@ -54,7 +57,9 @@ export const ProductProvider = ({ children }) => {
     try {
       await api.delete(`/products/${id}`);
       fetchProducts();
+      toast.success("Product deleted successfully");
     } catch (error) {
+      toast.error("Failed to delete product");
       console.error("Delete product error:", error);
     }
   };

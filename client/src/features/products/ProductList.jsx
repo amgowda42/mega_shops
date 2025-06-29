@@ -5,7 +5,7 @@ import ProductCardShimmer from "../../components/ui/shimmers/ProductCardShimmer"
 const ProductList = () => {
   const { products, loading, createProduct } = useProductContext();
   const shimmerArray = new Array(4).fill(null);
-  const [isModelOpen, setIsModelOpen] = useState(false);
+  const [isAddModelOpen, setIsAddModelOpen] = useState(false);
 
   const handleAddProduct = (e) => {
     e.preventDefault();
@@ -20,7 +20,7 @@ const ProductList = () => {
     };
     createProduct(data);
     form.reset();
-    setIsModelOpen(false);
+    setIsAddModelOpen(false);
   };
 
   return (
@@ -30,7 +30,7 @@ const ProductList = () => {
         <h6>List of Products Available in different categories</h6>
         <button
           className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 cursor-pointer"
-          onClick={() => setIsModelOpen(true)}
+          onClick={() => setIsAddModelOpen(true)}
         >
           Add Product
         </button>
@@ -46,11 +46,12 @@ const ProductList = () => {
           <p>Something went Wrong</p>
         )}
       </div>
-      {isModelOpen && (
+
+      {isAddModelOpen && (
         <div className="fixed inset-0 bg-white flex justify-center items-center">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md relative shadow-lg z-10">
+          <div className="bg-white rounded-lg p-6 w-full max-w-md relative shadow-lg z-20">
             <button
-              onClick={() => setIsModelOpen(false)}
+              onClick={() => setIsAddModelOpen(false)}
               className="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-2xl cursor-pointer"
             >
               &times;
@@ -89,7 +90,7 @@ const ProductList = () => {
               />
               <button
                 type="submit"
-                className="bg-green-600 text-white px-4 py-2 rounded"
+                className="bg-green-600 text-white px-4 py-2 rounded cursor-pointer"
               >
                 Submit
               </button>
