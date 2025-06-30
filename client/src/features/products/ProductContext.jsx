@@ -1,12 +1,14 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect,useCallback } from "react";
 import api from "../../api/api";
 import { toast } from "sonner";
 
 const ProductContext = createContext();
 
 export const useProductContext = () => useContext(ProductContext);
+
 export const ProductProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
+  const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const fetchProducts = async () => {
@@ -21,17 +23,17 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
-  const fetchProductById = async (id) => {
+  const fetchProductById = useCallback(async (id) => {
     try {
       setLoading(true);
       const res = await api.get(`/products/${id}`);
-      setProducts(res?.data?.product);
+      setProduct(res?.data?.product); 
     } catch (error) {
       console.error("Fetch product by ID error:", error);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   const createProduct = async (data) => {
     try {
@@ -73,6 +75,7 @@ export const ProductProvider = ({ children }) => {
       value={{
         products,
         loading,
+        product,
         fetchProductById,
         createProduct,
         updateProduct,

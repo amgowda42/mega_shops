@@ -1,14 +1,7 @@
-import { ProductProvider } from "./ProductContext";
 import ProductList from "./ProductList";
 
 const Product = () => {
-  return (
-    <>
-      <ProductProvider>
-        <ProductList />
-      </ProductProvider>
-    </>
-  );
+  return <ProductList />;
 };
 
 export default Product;

@@ -2,9 +2,12 @@ import { useState } from "react";
 import ProductCard from "./ProductCard";
 import { useProductContext } from "./ProductContext";
 import ProductCardShimmer from "../../components/ui/shimmers/ProductCardShimmer";
+
 const ProductList = () => {
   const { products, loading, createProduct } = useProductContext();
+
   const shimmerArray = new Array(4).fill(null);
+
   const [isAddModelOpen, setIsAddModelOpen] = useState(false);
 
   const handleAddProduct = (e) => {

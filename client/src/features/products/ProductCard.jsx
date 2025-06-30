@@ -1,11 +1,16 @@
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { LiaEditSolid } from "react-icons/lia";
+import { FaEye } from "react-icons/fa";
 import { useProductContext } from "./ProductContext";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 
 const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
+
   const { updateProduct, deleteProduct } = useProductContext();
+
   const [isEditModelOpen, setIsEditModelOpen] = useState(false);
 
   const {
@@ -39,11 +44,16 @@ const ProductCard = ({ product }) => {
     deleteProduct(product?._id);
   };
 
+  const handleViewProduct = () => {
+    navigate(`/main/products/${product?._id}`);
+  };
+
   return (
     <div className="p-4 space-y-2 rounded-xl shadow bg-white hover:shadow-md transition">
       <div className="flex text-lg font-semibold text-gray-900 justify-between items-center">
         <span>🛍️ Name: {product?.name}</span>
         <div className="flex items-center space-x-2">
+          <FaEye className="cursor-pointer" onClick={handleViewProduct} />
           <LiaEditSolid onClick={openEditModal} className="cursor-pointer" />
           <RiDeleteBin6Line
             onClick={handleDeleteProduct}
